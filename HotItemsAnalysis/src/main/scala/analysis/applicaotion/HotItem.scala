@@ -39,10 +39,10 @@ object HotItem {
 		env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
 
 		//从文件中获取数据
-		//		val inputDS: DataStream[String] = env.readTextFile("F:\\workSpace\\DataHouse_RealTime_Flink\\HotItemsAnalysis\\src\\main\\resources\\UserBehavior.csv")
+		val inputDS: DataStream[String] = env.readTextFile("F:\\workSpace\\DataHouse_RealTime_Flink\\HotItemsAnalysis\\src\\main\\resources\\UserBehavior.csv")
 
 		//从kafka中获取数据
-		val inputDS: DataStream[String] = env.addSource(new FlinkKafkaConsumer[String]("hotItems", new SimpleStringSchema(), MyUtils.getKafkaProperties))
+		//		env.addSource(new FlinkKafkaConsumer[String]("hotItems", new SimpleStringSchema(), MyUtils.getKafkaProperties))
 
 		val dataDS: DataStream[UserBehavior] = MyUtils.dataMapOp(inputDS).assignTimestampsAndWatermarks(
 			new BoundedOutOfOrdernessTimestampExtractor[UserBehavior](Time.seconds(1)) {

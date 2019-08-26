@@ -15,17 +15,17 @@ object MyUtils {
 		properties.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
 		properties.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
 		properties.setProperty("auto.offset.reset", "latest")
-		properties.setProperty("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
-		properties.setProperty("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
 		properties
 	}
 
-	def dataMapOp(inputData: DataStream[String]): DataStream[UserBehavior] = {
+	def dataMapOp(inputData:DataStream[String]):DataStream[UserBehavior]={
 		inputData.map(data => {
 			val dataArry: Array[String] = data.split(",")
-			UserBehavior(dataArry(0).trim.toLong, dataArry(1).trim.toLong, dataArry(2).trim.toInt, dataArry(3).trim, dataArry(4).trim.toLong)
+			UserBehavior(dataArry(0).trim.toLong,dataArry(1).trim.toLong, dataArry(2).trim.toInt, dataArry(3).trim, dataArry(4).trim.toLong)
 		})
 	}
+
+
 
 
 }
