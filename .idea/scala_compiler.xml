@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="Maven 1" modules="DataHouse_RealTime_Flink,HotItemsAnalysis" />
+    <profile name="Maven 1" modules="DataHouse_Real-Time_Flink,DataHouse_RealTime_Flink,HotItemsAnalysis" />
   </component>
 </project>

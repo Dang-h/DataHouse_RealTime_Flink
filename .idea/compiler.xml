@@ -10,8 +10,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="DataHouse_Real-Time_Flink" target="1.8" />
       <module name="DataHouse_RealTime_Flink" target="1.5" />
-      <module name="HotItemsAnalysis" target="1.5" />
+      <module name="HotItemsAnalysis" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

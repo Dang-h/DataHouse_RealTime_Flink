@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/DataHouse_RealTime_Flink.iml" filepath="$PROJECT_DIR$/.idea/DataHouse_RealTime_Flink.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataHouse_Real-Time_Flink.iml" filepath="$PROJECT_DIR$/DataHouse_Real-Time_Flink.iml" />
       <module fileurl="file://$PROJECT_DIR$/HotItemsAnalysis/HotItemsAnalysis.iml" filepath="$PROJECT_DIR$/HotItemsAnalysis/HotItemsAnalysis.iml" />
     </modules>
   </component>
