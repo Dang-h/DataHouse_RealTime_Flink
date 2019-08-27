@@ -39,7 +39,8 @@ object HotItem {
 		env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
 
 		//从文件中获取数据
-		val inputDS: DataStream[String] = env.readTextFile("F:\\workSpace\\DataHouse_RealTime_Flink\\HotItemsAnalysis\\src\\main\\resources\\UserBehavior.csv")
+//		val inputDS: DataStream[String] = env.readTextFile("F:\\workSpace\\DataHouse_RealTime_Flink\\HotItemsAnalysis\\src\\main\\resources\\UserBehavior.csv")
+		val inputDS: DataStream[String] = env.readTextFile("F:\\workSpace\\DataHouse_RealTime_Flink\\HotItemsAnalysis\\src\\main\\resources\\test.csv")
 
 		//从kafka中获取数据
 		//		env.addSource(new FlinkKafkaConsumer[String]("hotItems", new SimpleStringSchema(), MyUtils.getKafkaProperties))
@@ -52,10 +53,11 @@ object HotItem {
 
 		// 1 从源数据中获取数据，过滤出用户行为“pv”的数据
 		val filterDS: DataStream[UserBehavior] = dataDS.filter(_.behavior == "pv")
-		filterDS.print("filterDS")
+//		filterDS.print("filterDS")
 
 		// 2 按照商品ID分区,得到KeyedStream
 		val keyByKS: KeyedStream[UserBehavior, Long] = filterDS.keyBy(_.itemId)
+		keyByKS.print("keyByKS")
 
 		// 3 构建滑窗，size为60 min，slide为5 min 得到windowedStream
 		val slideWindowWS: WindowedStream[UserBehavior, Long, TimeWindow] = keyByKS.timeWindow(Time.hours(1), Time.minutes(5))

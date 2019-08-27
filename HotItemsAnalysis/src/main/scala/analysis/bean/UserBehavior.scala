@@ -1,6 +1,6 @@
 package analysis.bean
 
-// 源数据分析：
+// 输入数据：源数据分析：
 // 561558,加密用户ID userId
 // 3611281,加密商品ID itemId
 // 965809,加密商品类别categoryId
