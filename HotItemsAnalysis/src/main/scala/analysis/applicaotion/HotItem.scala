@@ -52,6 +52,7 @@ object HotItem {
 
 		// 1 从源数据中获取数据，过滤出用户行为“pv”的数据
 		val filterDS: DataStream[UserBehavior] = dataDS.filter(_.behavior == "pv")
+		filterDS.print("filterDS")
 
 		// 2 按照商品ID分区,得到KeyedStream
 		val keyByKS: KeyedStream[UserBehavior, Long] = filterDS.keyBy(_.itemId)
@@ -59,13 +60,15 @@ object HotItem {
 		// 3 构建滑窗，size为60 min，slide为5 min 得到windowedStream
 		val slideWindowWS: WindowedStream[UserBehavior, Long, TimeWindow] = keyByKS.timeWindow(Time.hours(1), Time.minutes(5))
 
-		//4 聚合; preAggregator预聚合操作, windowFunction等窗口要关闭时要做的操作（包装成ItemViewCount输出）
+		//4 使用增量聚合函数，聚合; preAggregator预聚合操作, windowFunction：等窗口要关闭时要做的操作（包装成ItemViewCount输出）
 		val aggregateDS: DataStream[ItemViewCount] = slideWindowWS.aggregate(new CountAgg(), new WindowResult())
+
+//		aggregateDS.print("aggregateDS")
 
 		//5 相同时间的窗口聚合，然后对其按商品数降序排列取前三
 		val resultDS: DataStream[String] = aggregateDS.keyBy(_.windowEnd).process(new TopNtoItems(3))
 
-		resultDS.print("hotItems")
+//		resultDS.print("hotItems")
 
 		env.execute("Hot Items")
 
