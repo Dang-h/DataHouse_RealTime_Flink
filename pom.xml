@@ -12,6 +12,8 @@
         <module>HotItemsAnalysis</module>
         <module>NetworkFlowAnalysis</module>
         <module>LogInFailDetect</module>
+        <module>OderTimeoutDetect</module>
+        <module>TxMatchDetect</module>
     </modules>
 
 
