@@ -38,7 +38,7 @@ object LoginFail {
 
 		//定义匹配模式
 		val logFailPattern: Pattern[LoginEvent, LoginEvent] = Pattern.begin[LoginEvent]("begin")
-		  .where(_.eventType == "fail")
+		  .where((_: LoginEvent).eventType == "fail")
 		  .next("next")
 		  .where(_.eventType == "fail")
 		  .within(Time.seconds(10))
